@@ -67,37 +67,23 @@ public class EmployeeServiceImpl implements EmployeesService {
 
     @Override
     public List<Employee> getListEmployeeOfDepartment(Integer departmentEmployee) {
-        List<Employee> employeesDepartment = new ArrayList<>();
-        for (Employee employee : employeesService.values()) {
-          if (employee.getDepartment().equals(departmentEmployee)) {
-               employeesDepartment.add(employee);
-           }
-        }
-        return employeesDepartment;
+        return employeesService.values().stream()
+                .filter(e -> e.getDepartment().equals(departmentEmployee))
+                .collect(Collectors.toList());
     }
     @Override
-    public Employee getMinSalaryEmployeeOfDepartment(Integer departmentEmployee) {
-        float employeeMinSalary = 1000000000;
-        Employee employeeWithMinSalary = null;
-        for (Employee employee: getListEmployeeOfDepartment(departmentEmployee)){
-            if (employee.getSalary() < employeeMinSalary) {
-                employeeMinSalary = employee.getSalary();
-                employeeWithMinSalary = employee;
-            }
-        }
-        return employeeWithMinSalary;
+    public Optional<Employee> getMinSalaryEmployeeOfDepartment(Integer departmentEmployee) {
+        Optional <Employee> minSalary = employeesService.values().stream()
+                .filter(e -> e.getDepartment().equals(departmentEmployee))
+                .min(Comparator.comparingInt(Employee::getSalary));
+        return minSalary;
     }
     @Override
-    public Employee getMaxSalaryEmployeeOfDepartment(Integer departmentEmployee) {
-        float employeeMaxSalary = 0;
-        Employee employeeWithMaxSalary = null;
-        for (Employee employee: getListEmployeeOfDepartment(departmentEmployee)){
-            if (employee.getSalary() > employeeMaxSalary) {
-                employeeMaxSalary = employee.getSalary();
-                employeeWithMaxSalary = employee;
-            }
-        }
-        return employeeWithMaxSalary;
+    public Optional<Employee> getMaxSalaryEmployeeOfDepartment(Integer departmentEmployee) {
+        Optional <Employee> maxSalary = employeesService.values().stream()
+                .filter(e -> e.getDepartment().equals(departmentEmployee))
+                .max(Comparator.comparingInt(Employee::getSalary));
+        return maxSalary;
     }
 
 
