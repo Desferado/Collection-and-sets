@@ -8,11 +8,13 @@ import pro.sky.CollectionAndSets.EmployeeData.Employee;
 import pro.sky.CollectionAndSets.Service.EmployeesService;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 @RequestMapping("/employee")
 @RestController
 public class EmployeeController {
-       private EmployeesService employees;
+       private final EmployeesService employees;
+
 
     public EmployeeController(EmployeesService employees) {
 
@@ -20,24 +22,48 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public String addEmployee(@RequestParam("name") String name, @RequestParam("lastName") String lastName) {
-        Employee employee = new Employee(name, lastName);
+    public String addEmployee(
+            @RequestParam("name") String name,
+            @RequestParam("lastName") String lastName,
+            @RequestParam("middleName") String middleName,
+            @RequestParam("salary") Integer salary,
+            @RequestParam("department") Integer department) {
+        Employee employee = new Employee(name, lastName, middleName, salary, department);
         return employees.addEmployee(employee);
     }
     @GetMapping("/remove")
-    public String removeEmployee(@RequestParam("name") String name, @RequestParam("lastName") String lastName) {
-        Employee employee = new Employee(name, lastName);
+    public String removeEmployee(@RequestParam("name") String name,
+                                 @RequestParam("lastName") String lastName,
+                                 @RequestParam("middleName") String middleName,
+                                 @RequestParam("salary") Integer salary,
+                                 @RequestParam("department") Integer department) {
+        Employee employee = new Employee(name, lastName, middleName, salary, department);
         return employees.removeEmployee(employee);
     }
     @GetMapping("/find")
-    public String findEmployee(@RequestParam("name") String name, @RequestParam("lastName") String lastName) {
-        Employee employee = new Employee(name, lastName);
+    public String findEmployee(@RequestParam("name") String name,
+                               @RequestParam("lastName") String lastName,
+                               @RequestParam("middleName") String middleName,
+                               @RequestParam("salary") Integer salary,
+                               @RequestParam("department") Integer department) {
+        Employee employee = new Employee(name, lastName, middleName, salary, department);
         return employees.findEmployee(employee);
     }
 
-    @GetMapping
+   @GetMapping
     public Collection<Employee> findAll(){
         return employees.findAll();
     }
-
+    @GetMapping("/departments/all")
+    public String getListEmployeeOfDepartment(@RequestParam("department") Integer department) {
+       return employees.getListEmployeeOfDepartment(department).toString();
+    }
+    @GetMapping("/departments/min-salary")
+    public String getMinSalaryEmployeeOfDepartment(@RequestParam("department") Integer department) {
+        return employees.getMinSalaryEmployeeOfDepartment(department).toString();
+    }
+    @GetMapping("/departments/max-salary")
+    public String getMaxSalaryEmployeeOfDepartment(@RequestParam("department") Integer department) {
+        return employees.getMaxSalaryEmployeeOfDepartment(department).toString();
+    }
 }
