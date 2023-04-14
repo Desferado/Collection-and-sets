@@ -2,9 +2,7 @@ package pro.sky.CollectionAndSets.Service;
 
 import pro.sky.CollectionAndSets.EmployeeData.Employee;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public interface EmployeesService {
 
@@ -22,5 +20,5 @@ public interface EmployeesService {
 
     Optional<Employee> getMaxSalaryEmployeeOfDepartment(Integer departmentEmployee);
 
-    //void printListEmployeeOfDepartment(HashMap<String, Employee> employeesService, int departmentEmployee);
+    Map<Integer, List<String>> printListEmployeeOfDepartment();
 }

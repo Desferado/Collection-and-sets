@@ -86,5 +86,12 @@ public class EmployeeServiceImpl implements EmployeesService {
         return maxSalary;
     }
 
+    @Override
+    public Map<Integer, List<String>> printListEmployeeOfDepartment() {
+        return employeesService.values().stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment,
+                        Collectors.mapping(Employee::getFullName,Collectors.toList())));
+    }
+
 
 }

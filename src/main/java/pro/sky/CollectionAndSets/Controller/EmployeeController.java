@@ -62,8 +62,12 @@ public class EmployeeController {
     public String getMinSalaryEmployeeOfDepartment(@RequestParam("department") Integer department) {
         return employees.getMinSalaryEmployeeOfDepartment(department).toString();
     }
-    @GetMapping("/departments/max-salary")
+    @GetMapping("/departments/departments/max-salary")
     public String getMaxSalaryEmployeeOfDepartment(@RequestParam("department") Integer department) {
         return employees.getMaxSalaryEmployeeOfDepartment(department).toString();
+    }
+    @GetMapping("/departments/allEmployee")
+    public String printListEmployeeOfDepartment() {
+        return employees.printListEmployeeOfDepartment().toString();
     }
 }
