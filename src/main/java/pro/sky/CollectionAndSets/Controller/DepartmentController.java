@@ -20,20 +20,20 @@ public class DepartmentController {
         this.department = department;
     }
 
-    @GetMapping("/{dept}/employees")
-    public String getListEmployeeOfDepartment(@RequestParam("department") Integer department, @PathVariable String dept) {
+    @GetMapping("/{id}/employees")
+    public String getListEmployeeOfDepartment(@PathVariable ("id") Integer department) {
         return this.department.getListEmployeeOfDepartment(department).toString();
     }
-    @GetMapping("/{dept}/salary/min")
-    public String getMinSalaryEmployeeOfDepartment(@RequestParam("department") Integer department, @PathVariable String dept) {
+    @GetMapping("/{id}/salary/min")
+    public String getMinSalaryEmployeeOfDepartment(@PathVariable ("id") Integer department) {
         return "Min salary in department" + this.department.getMinSalaryEmployeeOfDepartment(department);
     }
-    @GetMapping("/{dept}/salary/max")
-    public String getMaxSalaryEmployeeOfDepartment(@RequestParam("department") Integer department, @PathVariable String dept) {
+    @GetMapping("/{id}/salary/max")
+    public String getMaxSalaryEmployeeOfDepartment(@PathVariable ("id") Integer department) {
         return "Max salary in department" + this.department.getMaxSalaryEmployeeOfDepartment(department);
     }
-    @GetMapping("/{dept}/salary/sum")
-    public String getSumSalaryEmployeeOfDepartment(@RequestParam("department") Integer department, @PathVariable String dept) {
+    @GetMapping("/{id}/salary/sum")
+    public String getSumSalaryEmployeeOfDepartment(@PathVariable ("id") Integer department) {
         return this.department.getSumSalaryEmployeeOfDepartment(department).toString();
     }
     @GetMapping("/employees")
