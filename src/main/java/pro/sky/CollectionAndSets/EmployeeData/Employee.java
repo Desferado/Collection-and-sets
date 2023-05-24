@@ -1,15 +1,14 @@
 package pro.sky.CollectionAndSets.EmployeeData;
 
-import java.util.Map;
+
 import java.util.Objects;
 
 public class Employee {
     private final String firstName;
     private final String lastName;
     private final String middleName;
-    public Integer salary;
-    public Integer department;
-
+    private final Integer salary;
+    private final Integer department;
 
     public Employee(String firstName, String lastName, String middleName, Integer salary, Integer department) {
         this.firstName = firstName;
@@ -23,37 +22,17 @@ public class Employee {
         return salary;
     }
 
-    public void setSalary(Integer salary) {
-        this.salary = salary;
-    }
-
     public Integer getDepartment() {
         return department;
     }
 
-    public void setDepartment(int department) {
-        this.department = department;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-   public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
     public String getFullName(){
         return lastName + " " + firstName + " " + middleName;
     }
 
     @Override
     public String toString() {
-        String data = lastName + " " + firstName + " " + middleName + " " + salary + " " + department;
-        return data;
+        return lastName + " " + firstName + " " + middleName + " " + salary + " " + department;
     }
 
     @Override
